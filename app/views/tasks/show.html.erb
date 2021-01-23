@@ -1,3 +1,7 @@
+<div class="container">
 <h2><%= @task.title %></h2>
 <p><%= @task.details %></p>
-<p><%= @task.completed %></p>
+<p><%= check_box_tag @task.completed %></p>
+<%= link_to "⟲ Back to task list", tasks_path %>
+
+</div>
