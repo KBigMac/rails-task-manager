@@ -12,19 +12,31 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.find(params[:id])
-    @restaurant.save
+    @task = Task.new(task_params)
+    @task.save
+    redirect_to task_path(@task)
   end
 
   def edit
-
+    @task = Task.find(params[:id])
   end
 
   def update
-
+    @task = Task.find(params[:id])
+    @task.update(params[:task])
+    redirect_to task_path(@task)
   end
 
   def destroy
+    @task = Task.find(params[:id])
+    @task.destroy
+    redirect_to task_path(@task)
+  end
 
+
+private
+
+  def task_params
+    params.require(:task).permit(:title, :details, :rating)
   end
 end
